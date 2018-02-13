@@ -12,4 +12,4 @@ DB_PASSWORD=YOUR_DB_PASSWORD
 DB_NAME=YOUR_DATABASE_NAME  
 DB_PORT=YOUR_MYSQL_PORT
 
-###### Note: The parameter names before the '=' should be exactly named as above and it must end with a ';' for it to work;
+###### Note: The parameter names before the '=' should be exactly named as above for it to work;
