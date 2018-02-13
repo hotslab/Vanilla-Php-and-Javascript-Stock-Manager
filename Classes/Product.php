@@ -70,7 +70,7 @@ class Product
             $db->close();
             return "success";
         } else {
-            $result = "error: " . $sql . "<br>" . mysqli_error($db);
+            $result = "error: " . $sql . "<br>" . $db->error;
             $db->close();
             return $result;
         }
@@ -101,7 +101,7 @@ class Product
                 $db->close();
                 return "success";
             } else {
-                $result = "error: " . $sql . "<br>" . mysqli_error($db);
+                $result = "error: " . $sql . "<br>" . $db->error;
                 $db->close();
                 return $result;
             }
@@ -118,7 +118,7 @@ class Product
             $db->close();
             return "success";
         } else {
-            $result = "error: " . $sql . "<br>" . mysqli_error($db);
+            $result = "error: " . $sql . "<br>" .$db->error;
             $db->close();
             return $result;
         }

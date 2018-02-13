@@ -76,7 +76,7 @@ class Employee
                 $db->close();
                 return $queryResult;
             } else {
-                $queryResult = "error: " . $insertSql . "<br>" . mysqli_error($db);
+                $queryResult = "error: " . $insertSql . "<br>" . $db->error;
                 $db->close();
                 return $queryResult;
             }
@@ -106,7 +106,7 @@ class Employee
                 $db->close();
                 return "success";
             } else {
-                $result = "error: " . $sql . "<br>" . mysqli_error($db);
+                $result = "error: " . $sql . "<br>" . $db->error;
                 $db->close();
                 return $result;
             }
@@ -124,7 +124,7 @@ class Employee
             $db->close();
             return $result;
         } else {
-            $result = "error: " . $sql . "<br>" . mysqli_error($db);
+            $result = "error: " . $sql . "<br>" . $db->error;
             $db->close();
             return $result;
         }
