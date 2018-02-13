@@ -6,7 +6,7 @@ class Environment
     public function getEnv()
     {
         define(__ROOT__, dirname(__FILE__), true);
-        $myFile = file_get_contents(__ROOT__."/.env.txt");
+        $myFile = file_get_contents(__ROOT__."/.env");
         if ($myFile) {
             $envArray = explode(";", $myFile);
             if (sizeof($envArray) > 0) {

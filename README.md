@@ -3,7 +3,7 @@
 
 CONFIGURATIONS  
 
-1. Create a .env.txt file and specify the following parameters to connect to MYSQL:
+1. Create a .env file and specify the following parameters to connect to MYSQL:
 
   host=YOUR_DB_HOST_NAME;  
   username=YOUR_DB_USER_NAME;  
