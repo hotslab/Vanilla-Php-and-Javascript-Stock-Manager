@@ -4,7 +4,7 @@ namespace Config;
 define(__ROOT__, dirname(__FILE__), true);
 require_once(__ROOT__.'/Config/Environment.php');
 
-use Environment\Environment as Environment;
+use Config\Environment as Environment;
 
 class Database {
 
@@ -14,11 +14,11 @@ class Database {
     public function connectDB()
     {
         $env = Environment::getEnv();
-        $db = new mysqli_connect(
+        $db = new \mysqli(
             $env->host,
             $env->username,
             $env->password,
-            $environment->database,
+            $env->database,
             $env->port
         );
 
