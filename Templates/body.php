@@ -12,10 +12,10 @@ $creds = new \stdClass;
 $creds->email = "new@email.com";
 $creds->password = "secret";
 $result = Authentication::login($creds);
-echo $result["result"].", ".$result['message']."<br><br>";
-var_dump($result["employee"]);
-echo "<br><br>";
-var_dump($result["token"]);
+// echo $result["result"].", ".$result['message']."<br><br>";
+// var_dump($result["employee"]);
+// echo "<br><br>";
+// var_dump($result["token"]);
 $employee = new Employee("jake", "smith", "new@email.com", 1, "secret");
 // $newResult = Employee::save($employee);
 // echo $newResult["result"].", ".$newResult['message']." <br><br>";
@@ -30,5 +30,17 @@ $employee = new Employee("jake", "smith", "new@email.com", 1, "secret");
       You can contact me on
       <?php echo $employee->email; ?>
     </p>
+    <button type="button" onclick="loadDoc()">Change Content</button>
+    <table id="demo"></table>
   </div>
 </body>
+<script>
+  function loadDoc() {
+      if (!document.getElementById("row")) {
+        var table='<tr id="row"><th>Artist</th><th>Title</th></tr>';
+        document.getElementById("demo").innerHTML = table;
+      } else {
+        document.getElementById("demo").innerHTML = null;
+      }
+  }
+</script>
