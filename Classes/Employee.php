@@ -4,7 +4,7 @@ namespace Employee;
 define(__ROOT__, dirname(__FILE__), true);
 require_once(__ROOT__.'/Config/Database.php');
 
-use Database\Database as Database;
+use Config\Database as Database;
 
 class Employee
 {
@@ -41,12 +41,19 @@ class Employee
         where id = ".$employee_id;
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
-            $employee = $result->fetch_assoc();
-            return $employee;
+            $db->close();
+            return [
+                "result"=> "success",
+                "message"=> "employee found successfuly",
+                "employee"=> $result->fetch_assoc()
+            ];
         } else {
-            return "0 results";
+            $db->close();
+            return [
+                "result"=> "failure",
+                "message"=> "employee not found"
+            ];
         }
-        $conn->close();
     }
 
     public function save($employee)
@@ -54,17 +61,20 @@ class Employee
         $db = Database::connectDB();
         $searchSql = "select * from php_stock_manager.employee
         where email = '".$employee->email."'";
-        $result = $conn->query($searchSql);
+        $result = $db->query($searchSql);
         if ($result->num_rows > 0) {
             $db->close();
-            return "email address is already taken";
+            return [
+                "result"=> "failure",
+                "message"=> "email address is already taken"
+            ];
         } else {
             $insertSql = "insert into php_stock_manager.employee
             (name, surname, email, role, password, created_at, updated_at)
             values (".
             "'".$employee->name."', ".
             "'".$employee->surname."', ".
-            "'".$employee->email.", ".
+            "'".$employee->email."', ".
             $employee->role.", ".
             "'".$employee->password."', ".
             "'".$employee->created_at."', ".
@@ -72,13 +82,17 @@ class Employee
             ")";
 
             if ($db->query($insertSql)) {
-                $queryResult = "success";
                 $db->close();
-                return $queryResult;
+                return [
+                    "result"=> "success",
+                    "message"=> "employee saved successfuly"
+                ];
             } else {
-                $queryResult = "error: " . $insertSql . "<br>" . $db->error;
                 $db->close();
-                return $queryResult;
+                return [
+                    "result"=> "failure",
+                    "message"=> "error: " . $insertSql . "<br>" . $db->error
+                ];
             }
         }
     }
@@ -104,11 +118,16 @@ class Employee
 
             if ($db->query($sql)) {
                 $db->close();
-                return "success";
+                return [
+                    "result"=> "success",
+                    "message"=> "employee updated succesfully"
+                ];
             } else {
-                $result = "error: " . $sql . "<br>" . $db->error;
                 $db->close();
-                return $result;
+                return [
+                    "result"=> "failure",
+                    "message"=> "error: " . $sql . "<br>" . $db->error
+                ];
             }
         } else {
             $db->close();
@@ -120,13 +139,17 @@ class Employee
         $db = Database::connectDB();
         $sql = "delete from php_stock_manager.employee where id = ".$employee_id;
         if ($db->query($sql)) {
-            $result = "success";
             $db->close();
-            return $result;
+            return [
+                "result"=> "success",
+                "message"=> "employee deleted succesfully"
+            ];
         } else {
-            $result = "error: " . $sql . "<br>" . $db->error;
             $db->close();
-            return $result;
+            return [
+                "result"=> "failure",
+                "message"=> "error: " . $sql . "<br>" . $db->error
+            ];
         }
     }
 }

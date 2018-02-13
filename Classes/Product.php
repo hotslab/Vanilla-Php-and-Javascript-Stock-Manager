@@ -4,7 +4,7 @@ namespace Product;
 define(__ROOT__, dirname(__FILE__), true);
 require_once(__ROOT__.'/Config/Database.php');
 
-use Database\Database as Database;
+use Config\Database as Database;
 
 class Product
 {
@@ -42,12 +42,19 @@ class Product
         where id = ".$product_id;
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
-            $product = $result->fetch_assoc();
-            return $product;
+            $db->close();
+            return [
+                "result"=> "success",
+                "message"=> "employee not found",
+                "product"=> $result->fetch_assoc()
+            ];
         } else {
-            return "no product found";
+            $db->close();
+            return [
+                "result"=> "failure",
+                "message"=> "product not found"
+            ];
         }
-        $conn->close();
     }
 
     public function save($product)
@@ -68,11 +75,16 @@ class Product
 
         if ($db->query($sql)) {
             $db->close();
-            return "success";
+            return [
+                "result"=> "success",
+                "message"=> "product saved successfuly"
+            ];
         } else {
-            $result = "error: " . $sql . "<br>" . $db->error;
             $db->close();
-            return $result;
+            return [
+                "result"=> "failure",
+                "message"=> "error: " . $sql . "<br>" . $db->error
+            ];
         }
     }
 
@@ -99,11 +111,16 @@ class Product
 
             if ($db->query($sql)) {
                 $db->close();
-                return "success";
+                return [
+                    "result"=> "success",
+                    "message"=> "product updated successfuly"
+                ];
             } else {
-                $result = "error: " . $sql . "<br>" . $db->error;
                 $db->close();
-                return $result;
+                return [
+                    "result"=> "failure",
+                    "message"=> "error: " . $sql . "<br>" . $db->error
+                ];
             }
         } else {
             $db->close();
@@ -116,11 +133,16 @@ class Product
         $sql = "delete from php_stock_manager.product where id = ".$product_id;
         if ($db->query($sql)) {
             $db->close();
-            return "success";
+            return [
+                "result"=> "success",
+                "message"=> "product deleted successfuly"
+            ];
         } else {
-            $result = "error: " . $sql . "<br>" .$db->error;
             $db->close();
-            return $result;
+            return [
+                "result"=> "failure",
+                "message"=> "error: " . $sql . "<br>" . $db->error
+            ];
         }
     }
 }
