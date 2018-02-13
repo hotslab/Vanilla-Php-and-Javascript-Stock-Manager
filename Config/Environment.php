@@ -5,29 +5,28 @@ class Environment
 {
     public function getEnv()
     {
-        define(__ROOT__, dirname(__FILE__), true);
-        $myFile = file_get_contents(__ROOT__."/.env");
+        $myFile = file_get_contents(ROOT."/.env");
         if ($myFile) {
-            $envArray = explode(";", $myFile);
+            $envArray = explode("\n", $myFile);
             if (sizeof($envArray) > 0) {
                 $environment = new \stdClass;
                 foreach ($envArray as $key => $text) {
                     $newText = explode("=", $text);
                     if (sizeof($newText) === 2) {
                         switch (trim((string)$newText[0])) {
-                            case "host":
+                            case "DB_HOST":
                                 $environment->host = $newText[1];
                                 break;
-                            case "username":
+                            case "DB_USERNAME":
                                 $environment->username = $newText[1];
                                 break;
-                            case "password":
+                            case "DB_PASSWORD":
                                 $environment->password = $newText[1];
                                 break;
-                            case "database":
+                            case "DB_NAME":
                                 $environment->database = $newText[1];
                                 break;
-                            case "port":
+                            case "DB_PORT":
                                 $environment->port = $newText[1];
                                 break;
                             default:

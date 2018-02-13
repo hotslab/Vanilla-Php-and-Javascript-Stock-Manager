@@ -1,14 +1,14 @@
 <?php
 namespace Authentication;
 
-define(__ROOT__, dirname(__FILE__), true);
-require_once(__ROOT__.'/Config/Database.php');
+require_once(ROOT.'/Config/Database.php');
 
 use Config\Database as Database;
 
 class Authentication
 {
-    public function login($credentials) {
+    public function login($credentials)
+    {
         $db = Database::connectDB();
         if (
             $credentials->email &&

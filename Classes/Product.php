@@ -1,8 +1,7 @@
 <?php
 namespace Product;
 
-define(__ROOT__, dirname(__FILE__), true);
-require_once(__ROOT__.'/Config/Database.php');
+require_once(ROOT.'/Config/Database.php');
 
 use Config\Database as Database;
 

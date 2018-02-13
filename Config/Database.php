@@ -1,13 +1,12 @@
 <?php
 namespace Config;
 
-define(__ROOT__, dirname(__FILE__), true);
-require_once(__ROOT__.'/Config/Environment.php');
+require_once(ROOT.'/Config/Environment.php');
 
 use Config\Environment as Environment;
 
-class Database {
-
+class Database
+{
     private $env;
     private $db;
 

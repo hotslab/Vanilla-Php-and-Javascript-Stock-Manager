@@ -1,10 +1,9 @@
 <?php
 namespace Template;
 
-define(__ROOT__, dirname(__FILE__), true);
-require_once(__ROOT__.'/Classes/Employee.php');
-require_once(__ROOT__.'/Config/Database.php');
-require_once(__ROOT__.'/Classes/Authentication.php');
+require_once(ROOT.'/Classes/Employee.php');
+require_once(ROOT.'/Config/Database.php');
+require_once(ROOT.'/Classes/Authentication.php');
 use Employee\Employee as Employee;
 use Authentication\Authentication as Authentication;
 use Config\Database as Database;
@@ -13,10 +12,10 @@ $creds = new \stdClass;
 $creds->email = "new@email.com";
 $creds->password = "secret";
 $result = Authentication::login($creds);
-// echo $result["result"].", ".$result['message']."<br><br>";
-// var_dump($result["employee"]);
-// echo "<br><br>";
-// var_dump($result["token"]);
+echo $result["result"].", ".$result['message']."<br><br>";
+var_dump($result["employee"]);
+echo "<br><br>";
+var_dump($result["token"]);
 $employee = new Employee("jake", "smith", "new@email.com", 1, "secret");
 // $newResult = Employee::save($employee);
 // echo $newResult["result"].", ".$newResult['message']." <br><br>";
