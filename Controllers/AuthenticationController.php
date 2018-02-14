@@ -1,11 +1,11 @@
 <?php
-namespace Authentication;
+namespace Controller;
 
 require_once(ROOT.'/Config/Database.php');
 
 use Config\Database as Database;
 
-class Authentication
+class AuthenticationController
 {
     public function login($credentials)
     {
@@ -15,7 +15,7 @@ class Authentication
             $credentials->password
         ) {
             $sql = "select
-            name, surname, email, role, created_at, updated_at 
+            name, surname, email, role, created_at, updated_at
             from php_stock_manager.employee
             where email = '".$credentials->email."' and ".
             "password = '".hash('md5', $credentials->password)."'";

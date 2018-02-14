@@ -1,23 +1,26 @@
 <?php
 namespace Template;
 
-require_once(ROOT.'/Classes/Employee.php');
 require_once(ROOT.'/Config/Database.php');
-require_once(ROOT.'/Classes/Authentication.php');
-use Employee\Employee as Employee;
-use Authentication\Authentication as Authentication;
+require_once(ROOT.'/Controller/EmployeeController.php');
+require_once(ROOT.'/Controller/AuthenticationController.php');
+require_once(ROOT.'/Model/Employee.php');
+
 use Config\Database as Database;
+use Model\Employee as Employee;
+use Controller\EmployeeController as EmployeeController;
+use Controller\AuthenticationController as Auth;
 
 $creds = new \stdClass;
 $creds->email = "new@email.com";
 $creds->password = "secret";
-$result = Authentication::login($creds);
+$result = Auth::login($creds);
 // echo $result["result"].", ".$result['message']."<br><br>";
 // var_dump($result["employee"]);
 // echo "<br><br>";
 // var_dump($result["token"]);
 $employee = new Employee("jake", "smith", "new@email.com", 1, "secret");
-// $newResult = Employee::save($employee);
+// $newResult = EmployeeController::save($employee);
 // echo $newResult["result"].", ".$newResult['message']." <br><br>";
 ?>
 <body>
