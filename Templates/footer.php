@@ -1,4 +1,7 @@
+    </div>
+  </body>
   <footer>
-    <h2><i>Footer section</i></h2>
+    <h4>Stock Manager</h4>
+    <h4><i>Copyright 2018</i></h4>
   </footer>
 </html>
