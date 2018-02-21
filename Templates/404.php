@@ -1,3 +1,6 @@
 <?php require_once(ROOT.'/Templates/header.php'); ?>
-<h2>404 Page Not found</h2>
+  <div class="not-found">
+    <h1>404<h1>
+    <h6><small>Page Not found</small></h6>
+  </div>
 <?php require_once(ROOT.'/Templates/footer.php'); ?>

@@ -1,4 +1,4 @@
-    </div>
+    </div><!--content-->
   </body>
   <footer>
     <h4>Stock Manager</h4>

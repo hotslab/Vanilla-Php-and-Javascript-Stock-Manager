@@ -36,6 +36,17 @@
       }
       .content {
         padding: 15px;
+        min-height: 500px;
+      }
+      .not-found {
+        font-size: 50px;
+        text-align: center;
+      }
+      .centered {
+        text-align: center;
+      }
+      .header-text {
+        color: #004d4d;
       }
       footer {
         padding: 15px;
@@ -56,6 +67,12 @@
       </div>
       <div class="menu-item cursor-pointer">
         <a href="http://localhost:8700/employees">Employees</a>
+      </div>
+      <div class="menu-item cursor-pointer">
+        <a href="http://localhost:8700/login">Login</a>
+      </div>
+      <div class="menu-item cursor-pointer">
+        <a href="http://localhost:8700/register">Register</a>
       </div>
     </div>
     <div class="content">
