@@ -7,18 +7,18 @@ use Config\Database as Database;
 
 class AuthenticationController
 {
-    public function login($credentials)
+    public function login($request)
     {
         $db = Database::connectDB();
         if (
-            $credentials->email &&
-            $credentials->password
+            $request['email'] &&
+            $request['password']
         ) {
             $sql = "select
             name, surname, email, role, created_at, updated_at
             from php_stock_manager.employee
-            where email = '".$credentials->email."' and ".
-            "password = '".hash('md5', $credentials->password)."'";
+            where email = '".$request['email']."' and ".
+            "password = '".hash('md5', $request['password'])."'";
             $result = $db->query($sql);
             if ($result->num_rows > 0) {
                 $employee = $result->fetch_assoc();
@@ -40,7 +40,7 @@ class AuthenticationController
             $db->close();
             return [
                 "result" => "failure",
-                "message" => "please add your credentials correctly"
+                "message" => "Your login details are incorrect"
             ];
         }
     }

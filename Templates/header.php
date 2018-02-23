@@ -6,6 +6,9 @@
     <title>Stocker</title>
     <!--<link rel="stylesheet" type="text/css" href="./Assets/css/style.css">-->
     <style>
+      html {
+        background: #009999;
+      }
       body {
         margin: 0;
         background: #FFF5EE;
@@ -58,9 +61,13 @@
       footer {
         padding: 15px;
         color: white;
+        width:100%;
         font-weight: bold;
         background: #009999;
         height: 100vh;
+      }
+      .error {
+        color: red;
       }
       /*HELPER CLASSES*/
       a {

@@ -1,6 +1,6 @@
 <?php require_once(ROOT.'/Templates/header.php'); ?>
   <div class="register-form">
-    <h2 class="teal-color">Register to Stocker</h2>
+    <h2 class="teal-color">Register into Stocker</h2>
     <input id="name" type="text" name="name" placeholder="name"/>
     <input id="surname" type="text" name="surname" placeholder="surname"/>
     <input id="email" type="email" name="email" placeholder="email"/>
