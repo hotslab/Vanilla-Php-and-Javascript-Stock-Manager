@@ -36,7 +36,7 @@
             if (response.result === 'success') {
               sessionStorage.setItem(
                 "auth",
-                JSON.stringfiy({
+                JSON.stringify({
                   employee: response.employee,
                   token: response.token
                 })

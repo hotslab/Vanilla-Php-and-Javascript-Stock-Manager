@@ -7,12 +7,37 @@ use Config\Database as Database;
 
 class EmployeeController
 {
+    public function getEmployees() {
+        $db = Database::connectDB();
+        $sql = "select * from php_stock_manager.employee";
+        $result = $db->query($sql);
+        $employees = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($employees, $row);
+            }
+            $db->close();
+            return [
+                "result"=> "success",
+                "message"=> "employees found successfuly",
+                "employees"=> $employees
+            ];
+        } else {
+            $db->close();
+            return [
+                "result"=> "failure",
+                "message"=> "employee not found",
+                "employees"=> $employees
+            ];
+        }
+    }
+
     public function getEmployee($employee_id)
     {
         $db = Database::connectDB();
         $sql = "select * from php_stock_manager.employee
         where id = ".$employee_id;
-        $result = $conn->query($sql);
+        $result = $db->query($sql);
         if ($result->num_rows > 0) {
             $db->close();
             return [
@@ -49,7 +74,7 @@ class EmployeeController
             "'".$employee->surname."', ".
             "'".$employee->email."', ".
             $employee->role.", ".
-            "'".$employee->password."', ".
+            "'".hash('md5', $employee->password)."', ".
             "'".$employee->created_at."', ".
             "'".$employee->updated_at."'".
             ")";

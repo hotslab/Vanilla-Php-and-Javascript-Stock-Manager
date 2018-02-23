@@ -10,38 +10,52 @@ use Model\Employee as Employee;
 use Controller\EmployeeController as EmployeeController;
 use Controller\AuthenticationController as Auth;
 
-$creds = new \stdClass;
-$creds->email = "new@email.com";
-$creds->password = "secret";
-$result = Auth::login($creds);
-// echo $result["result"].", ".$result['message']."<br><br>";
-// var_dump($result["employee"]);
-// echo "<br><br>";
-// var_dump($result["token"]);
-$employee = new Employee("jake", "smith", "new@email.com", 1, "secret");
+// $employee = new Employee("jake", "smith", "new@email.com", 1, "secret");
 // $newResult = EmployeeController::save($employee);
 // echo $newResult["result"].", ".$newResult['message']." <br><br>";
 ?>
 <div class="heading">
-  <h2>
-    Hello there. I am
-    <?php echo $employee->name.' '.$employee->surname; ?>
-  </h2>
-  <p>
-    You can contact me on
-    <?php echo $employee->email; ?>
-  </p>
   <button type="button" onclick="loadDoc()">Change Content</button>
   <table id="demo"></table>
 </div>
 <script>
   function loadDoc() {
-      if (!document.getElementById("row")) {
-        var table='<tr id="row"><th>Artist</th><th>Title</th></tr>';
-        document.getElementById("demo").innerHTML = table;
-      } else {
-        document.getElementById("demo").innerHTML = null;
-      }
+    if (!document.getElementById("row")) {
+      var table='<tr id="row"><th>Artist</th><th>Title</th></tr>';
+      document.getElementById("demo").innerHTML = table;
+    } else {
+      document.getElementById("demo").innerHTML = null;
+    }
   }
+  function openEmployees() {
+    const http = new XMLHttpRequest();
+    http.open(
+      "POST", "http://localhost:8700/api/employees",
+      true
+    );
+    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    http.onload = function() {
+      const response = http.response ? JSON.parse(http.response) : null;
+      if (response) {
+        if (response.result === 'success') {
+          console.log(response.employees)
+          let myHTML = '<tr id="row"><th>Name</th><th>Email</th></tr>';
+          for (let employee of response.employees) {
+            myHTML += '<tr><td></td>'+employee.name + ' ' + employee.surname +'<td>'+ employee.email+'</td></tr>';
+          }
+          document.getElementById("demo").innerHTML = myHTML;
+        } else {
+          document.querySelector('.error').innerHTML = response.message;
+        }
+      }
+    }
+    http.send();
+  }
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      openEmployees()
+    },
+    false);
 </script>
 <?php include(ROOT.'/Templates/footer.php'); ?>

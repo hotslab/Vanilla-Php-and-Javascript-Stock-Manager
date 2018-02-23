@@ -2,8 +2,10 @@
 namespace Routing;
 
 require_once(ROOT.'/Controllers/AuthenticationController.php');
+require_once(ROOT.'/Controllers/EmployeeController.php');
 
 use \Controller\AuthenticationController as Auth;
+use \Controller\EmployeeController as Employee;
 
 class ApiRouting
 {
@@ -11,8 +13,11 @@ class ApiRouting
     {
         header("Content-Type: application/json");
         if ($url[0] === "/api/login") {
-            $response = Auth::login(json_decode(stripslashes($method)));
-            echo json_encode($response);
+            echo json_encode(Auth::login($method));
+        } else if ($url[0] === "/api/register") {
+            /* CODE HERE */
+        } else if ($url[0] === "/api/employees") {
+            echo json_encode(Employee::getEmployees());
         }
     }
 }
