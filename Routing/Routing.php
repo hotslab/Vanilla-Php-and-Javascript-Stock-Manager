@@ -24,6 +24,18 @@ class Routing
                   "route" => ROOT.'/Templates/products.php'
                 ];
                 break;
+            case '/login':
+                return [
+                  "header" => null,
+                  "route" => ROOT.'/Templates/login.php'
+                ];
+                break;
+            case '/register':
+                return [
+                  "header" => null,
+                  "route" => ROOT.'/Templates/register.php'
+                ];
+                break;
             default:
                 return [
                   "header" => 'HTTP/1.0 404 Not Found',
