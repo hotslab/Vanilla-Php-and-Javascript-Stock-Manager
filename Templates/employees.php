@@ -24,7 +24,6 @@
       const response = http.response ? JSON.parse(http.response) : null;
       if (response) {
         if (response.result === 'success') {
-          console.log(response.employees)
           let myHTML = '<tr id="row">' +
           '<th>Name</th>' +
           '<th>Email</th>' +
