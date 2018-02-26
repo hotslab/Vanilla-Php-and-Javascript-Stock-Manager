@@ -1,8 +1,8 @@
 <?php require_once(ROOT.'/Templates/header.php'); ?>
-<div class="heading">
+<div class="employees">
   <button type="button" onclick="loadDoc()">Change Content</button>
   <h2>Employees</h2>
-  <table id="demo"></table>
+  <table id="employee-table"></table>
 </div>
 <script>
   function loadDoc() {
@@ -31,7 +31,7 @@
             employee.name + ' ' + employee.surname +
             '</td><td>' + employee.email + '</td></tr>';
           }
-          document.getElementById("demo").innerHTML = myHTML;
+          document.getElementById("employee-table").innerHTML = myHTML;
         } else {
           document.querySelector('.error').innerHTML = response.message;
         }

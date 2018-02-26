@@ -3,9 +3,11 @@ namespace Routing;
 
 require_once(ROOT.'/Controllers/AuthenticationController.php');
 require_once(ROOT.'/Controllers/EmployeeController.php');
+require_once(ROOT.'/Controllers/ProductController.php');
 
 use \Controller\AuthenticationController as Auth;
 use \Controller\EmployeeController as Employee;
+use \Controller\ProductController as Product;
 
 class ApiRouting
 {
@@ -18,6 +20,8 @@ class ApiRouting
             echo json_encode(Auth::register($method));
         } else if ($url[0] === "/api/employees") {
             echo json_encode(Employee::getEmployees());
+        } else if ($url[0] === "/api/products") {
+            echo json_encode(Product::getProducts());
         }
     }
 }

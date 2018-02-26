@@ -7,12 +7,38 @@ use Config\Database as Database;
 
 class ProductController
 {
+    public function getProducts()
+    {
+        $db = Database::connectDB();
+        $products = array();
+        $sql = "select * from php_stock_manager.product";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($products, $row);
+            }
+            $db->close();
+            return [
+                "result"=> "success",
+                "message"=> "employee not found",
+                "product"=> $products
+            ];
+        } else {
+            $db->close();
+            return [
+                "result"=> "failure",
+                "message"=> "no products not found",
+                "product"=> $products
+            ];
+        }
+    }
+
     public function getProduct($product_id)
     {
         $db = Database::connectDB();
         $sql = "select * from php_stock_manager.product
         where id = ".$product_id;
-        $result = $conn->query($sql);
+        $result = $db->query($sql);
         if ($result->num_rows > 0) {
             $db->close();
             return [
