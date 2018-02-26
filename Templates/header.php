@@ -140,20 +140,52 @@
   </head>
   <body>
     <div class="navbar">
-      <div  class="menu-item cursor-pointer">
+      <div  class="home-link menu-item cursor-pointer">
         <a class="big-text" href="http://localhost:8700/">&#9951;</a>
       </div>
-      <div class="menu-item cursor-pointer">
+      <div class="products-link menu-item cursor-pointer">
         <a href="http://localhost:8700/products">Products</a>
       </div>
-      <div class="menu-item cursor-pointer">
+      <div class="employees-link menu-item cursor-pointer">
         <a href="http://localhost:8700/employees">Employees</a>
       </div>
-      <div class="menu-item cursor-pointer">
+      <div class="login-link menu-item cursor-pointer">
         <a href="http://localhost:8700/login">Login</a>
       </div>
-      <div class="menu-item cursor-pointer">
+      <div class="register-link menu-item cursor-pointer">
         <a href="http://localhost:8700/register">Register</a>
+      </div>
+      <div class="logout-link menu-item cursor-pointer">
+        <a onclick="logout()">Logout</a>
       </div>
     </div>
     <div class="content">
+    <script>
+      function logout() {
+        sessionStorage.clear();
+        configureNavBar();
+        location.href = 'http://localhost:8700/';
+      }
+      function configureNavBar() {
+        let auth = JSON.parse(sessionStorage.getItem('auth'));
+        if (auth) {
+          document.querySelector('.employees-link').style.display = 'block';
+          document.querySelector('.products-link').style.display = 'block';
+          document.querySelector('.logout-link').style.display = 'block';
+          document.querySelector('.register-link').style.display = 'none';
+          document.querySelector('.login-link').style.display = 'none';
+        } else {
+          document.querySelector('.employees-link').style.display = 'none';
+          document.querySelector('.products-link').style.display = 'none';
+          document.querySelector('.logout-link').style.display = 'none';
+          document.querySelector('.register-link').style.display = 'block';
+          document.querySelector('.login-link').style.display = 'block';
+        }
+      }
+      document.addEventListener(
+      'DOMContentLoaded',
+      () => {
+        configureNavBar()
+      },
+      false);
+    </script>
