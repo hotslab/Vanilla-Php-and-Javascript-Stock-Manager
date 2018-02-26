@@ -56,6 +56,8 @@ class EmployeeController
 
     public function save($employee)
     {
+        // $employee = new Employee("jake", "smith", "new@email.com", 1, "secret");
+        // echo $newResult["result"].", ".$newResult['message']." <br><br>";
         $db = Database::connectDB();
         $searchSql = "select * from php_stock_manager.employee
         where email = '".$employee->email."'";

@@ -15,7 +15,7 @@ class ApiRouting
         if ($url[0] === "/api/login") {
             echo json_encode(Auth::login($method));
         } else if ($url[0] === "/api/register") {
-            /* CODE HERE */
+            echo json_encode(Auth::register($method));
         } else if ($url[0] === "/api/employees") {
             echo json_encode(Employee::getEmployees());
         }

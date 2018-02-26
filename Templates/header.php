@@ -13,7 +13,7 @@
         margin: 0;
         background: #FFF5EE;
         color: black;
-        font-family: arial, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
       }
       .navbar {
         padding: 15px;
@@ -68,6 +68,24 @@
       }
       .error {
         color: red;
+      }
+      table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      tr:nth-child(even){background-color: #f2f2f2;}
+      tr:hover {background-color: #ddd;}
+      th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #009999;
+          color: white;
       }
       /*HELPER CLASSES*/
       a {

@@ -6,7 +6,7 @@
     <input class="password" type="password" name="password" placeholder="password"/>
     <div class="login-buttons">
       <p>
-        <button onclick="register()" class="button">
+        <button onclick="login()" class="button">
           Login
         </button>
       </p>
@@ -19,7 +19,7 @@
   </div>
   </div>
   <script>
-    function register() {
+    function login() {
       document.querySelector('.error').innerHTML = null;
       const email = document.querySelector('.email').value.trim();
       const password = document.querySelector('.password').value.trim();
@@ -47,12 +47,10 @@
             }
           }
         }
-        let data = JSON.stringify(
-          {
+        let data = JSON.stringify({
             "email": email,
             "password": password
-          }
-        );
+        });
         http.send(data);
       } else {
         document.querySelector('.error').innerHTML = 'Please add your credentials';
