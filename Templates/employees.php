@@ -25,11 +25,15 @@
       if (response) {
         if (response.result === 'success') {
           console.log(response.employees)
-          let myHTML = '<tr id="row"><th>Name</th><th>Email</th></tr>';
+          let myHTML = '<tr id="row">' +
+          '<th>Name</th>' +
+          '<th>Email</th>' +
+          '</tr>';
           for (let employee of response.employees) {
-            myHTML += '<tr><td>' +
-            employee.name + ' ' + employee.surname +
-            '</td><td>' + employee.email + '</td></tr>';
+            myHTML += '<tr>' +
+            '<td>' + employee.name + ' ' + employee.surname + '</td>' +
+            '<td>' + employee.email + '</td>' +
+            '</tr>';
           }
           document.getElementById("employee-table").innerHTML = myHTML;
         } else {
