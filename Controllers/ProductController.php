@@ -20,15 +20,15 @@ class ProductController
             $db->close();
             return [
                 "result"=> "success",
-                "message"=> "employee not found",
-                "product"=> $products
+                "message"=> "products successfully found",
+                "products"=> $products
             ];
         } else {
             $db->close();
             return [
                 "result"=> "failure",
                 "message"=> "no products not found",
-                "product"=> $products
+                "products"=> $products
             ];
         }
     }
@@ -43,32 +43,33 @@ class ProductController
             $db->close();
             return [
                 "result"=> "success",
-                "message"=> "employee not found",
+                "message"=> "product successfully found",
                 "product"=> $result->fetch_assoc()
             ];
         } else {
             $db->close();
             return [
                 "result"=> "failure",
-                "message"=> "product not found"
+                "message"=> "product not found",
+                "product"=> null
             ];
         }
     }
 
-    public function save($product)
+    public function save($request)
     {
         $db = Database::connectDB();
         $sql = "INSERT INTO php_stock_manager.product
         (name, description, SKU, manufacture_code, price, quantity, created_at, updated_at)
         VALUES (".
-        "'".$product->name."', ".
-        "'".$product->decription."', ".
-        "'".$product->SKU.", ".
-        "'".$product->manufacture_code."', ".
-        $product->price.", ".
-        $product->quantity.", ".
-        "'".$product->created_at."', ".
-        "'".$product->updated_at."'".
+        "'".$request['name']."', ".
+        "'".$request['description']."', ".
+        "'".$request['SKU']."', ".
+        "'".$request['manufacture_code']."', ".
+        $request['price'].", ".
+        $request['quantity'].", ".
+        "'".date('Y-m-d H:i:s')."', ".
+        "'".date('Y-m-d H:i:s')."'".
         ")";
 
         if ($db->query($sql)) {

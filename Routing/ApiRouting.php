@@ -22,6 +22,8 @@ class ApiRouting
             echo json_encode(Employee::getEmployees());
         } else if ($url[0] === "/api/products") {
             echo json_encode(Product::getProducts());
+        } else if ($url[0] === "/api/products/create") {
+            echo json_encode(Product::save($method));
         }
     }
 }

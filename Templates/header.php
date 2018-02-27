@@ -61,13 +61,16 @@
       footer {
         padding: 15px;
         color: white;
-        width:100%;
         font-weight: bold;
         background: #009999;
         height: 100vh;
       }
       .error {
         color: red;
+      }
+      .table-container {
+        width: 100%;
+        overflow-x:auto;
       }
       table {
         font-family: Arial, Helvetica, sans-serif;
@@ -76,6 +79,7 @@
       }
       td, th {
         border: 1px solid #ddd;
+        min-width: 100px;
         padding: 8px;
       }
       tr:nth-child(even){background-color: #f2f2f2;}
@@ -86,6 +90,9 @@
           text-align: left;
           background-color: #009999;
           color: white;
+      }
+      .employees {
+        width: 100%;
       }
       /*HELPER CLASSES*/
       a {
@@ -98,7 +105,7 @@
       .cursor-pointer {
         cursor: pointer;
       }
-      .centered {
+      .centered {none
         text-align: center;
       }
       .teal-color {
@@ -106,6 +113,14 @@
       }
       .button {
         background: #009999;
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+      }
+      .close-button {
+        background: red;
         padding: 10px;
         color: white;
         font-weight: bold;
@@ -135,6 +150,13 @@
         padding: 12px 20px;
         background: #00cccc;
         color: white;
+      }
+      .two-column {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
       }
     </style>
   </head>
