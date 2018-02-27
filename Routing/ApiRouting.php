@@ -11,19 +11,19 @@ use \Controller\ProductController as Product;
 
 class ApiRouting
 {
-    public function getRoute($url, $method)
+    public function getRoute($url, $params)
     {
         header("Content-Type: application/json");
         if ($url[0] === "/api/login") {
-            echo json_encode(Auth::login($method));
-        } else if ($url[0] === "/api/register") {
-            echo json_encode(Auth::register($method));
-        } else if ($url[0] === "/api/employees") {
+            echo json_encode(Auth::login($params));
+        } elseif ($url[0] === "/api/register") {
+            echo json_encode(Auth::register($params));
+        } elseif ($url[0] === "/api/employees") {
             echo json_encode(Employee::getEmployees());
-        } else if ($url[0] === "/api/products") {
+        } elseif ($url[0] === "/api/products") {
             echo json_encode(Product::getProducts());
-        } else if ($url[0] === "/api/products/create") {
-            echo json_encode(Product::save($method));
+        } elseif ($url[0] === "/api/products/create") {
+            echo json_encode(Product::save($params));
         }
     }
 }

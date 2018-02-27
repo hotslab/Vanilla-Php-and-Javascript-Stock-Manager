@@ -22,14 +22,14 @@
     <input type="text" class="price" name="price" placeholder="Price">
     <input type="number" class="quantity" name="quantity" placeholder="Quantity">
     <br><br>
-    <button class="button create-product" onclick="createProduct()">
-      Submit
-    </button>
-    <button class="button update-product" onclick="deleteProduct()">
+    <button class="button delete-product" onclick="deleteProduct()">
       Delete
     </button>
     <button class="button update-product" onclick="updateProduct()">
       Update
+    </button>
+    <button class="button create-product" onclick="createProduct()">
+      Submit
     </button>
   </div>
 </div>
@@ -42,6 +42,7 @@
     document.querySelector(".product-close").style.display = 'block';
     document.querySelector(".create-product").style.display = 'block';
     document.querySelector(".update-product").style.display = 'none';
+    document.querySelector(".delete-product").style.display = 'none';
   }
   function openUpdateProduct(key, product_id) {
     document.querySelector(".error").innerHTML = null;
@@ -51,6 +52,7 @@
     document.querySelector(".product-close").style.display = 'block';
     document.querySelector(".create-product").style.display = 'none';
     document.querySelector(".update-product").style.display = 'block';
+    document.querySelector(".delete-product").style.display = 'none';
     let product = [];
     const cells = document.querySelector(".product-table").rows.item(key).cells;
     for (let cell of cells) {
@@ -72,6 +74,7 @@
     document.querySelector(".product-close").style.display = 'none';
     document.querySelector(".create-product").style.display = 'none';
     document.querySelector(".update-product").style.display = 'none';
+    document.querySelector(".delete-product").style.display = 'none';
   }
   function createProduct() {
     document.querySelector(".error").innerHTML = null;
@@ -98,6 +101,7 @@
             document.querySelector(".product-close").style.display = 'none';
             document.querySelector(".create-product").style.display = 'none';
             document.querySelector(".update-product").style.display = 'none';
+            document.querySelector(".delete-product").style.display = 'none';
             document.querySelector('.name').value = null;
             document.querySelector('.description').value = null;
             document.querySelector('.SKU').value = null;
@@ -174,6 +178,7 @@
       document.querySelector(".product-close").style.display = 'none';
       document.querySelector(".create-product").style.display = 'none';
       document.querySelector(".update-product").style.display = 'none';
+      document.querySelector(".delete-product").style.display = 'none';
       openProducts()
     },
     false);
