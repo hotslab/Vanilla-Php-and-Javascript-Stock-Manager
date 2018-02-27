@@ -1,18 +1,9 @@
 <?php require_once(ROOT.'/Templates/header.php'); ?>
 <div class="employees">
-  <button type="button" onclick="loadDoc()">Change Content</button>
   <h2>Employees</h2>
   <div class="table-container"><table id="employee-table"></table></div>
 </div>
 <script>
-  function loadDoc() {
-    if (!document.getElementById("row")) {
-      const table='<tr><th>Artist</th><th>Title</th></tr>';
-      document.getElementById("demo").innerHTML = table;
-    } else {
-      document.getElementById("demo").innerHTML = null;
-    }
-  }
   function openEmployees() {
     const http = new XMLHttpRequest();
     http.open(

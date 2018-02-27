@@ -48,7 +48,7 @@
                   token: response.token
                 })
               );
-              location.href = 'http://localhost:8700/employees';
+              location.href = 'http://localhost:8700/products';
             } else {
               document.querySelector('.error').innerHTML = response.message;
             }

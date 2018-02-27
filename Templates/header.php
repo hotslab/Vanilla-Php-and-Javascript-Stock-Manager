@@ -105,7 +105,7 @@
       .cursor-pointer {
         cursor: pointer;
       }
-      .centered {none
+      .centered {
         text-align: center;
       }
       .teal-color {

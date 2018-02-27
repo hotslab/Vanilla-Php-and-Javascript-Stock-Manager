@@ -63,6 +63,12 @@
             document.querySelector(".product-table").style.display = 'block';
             document.querySelector(".product-open").style.display = 'block';
             document.querySelector(".product-close").style.display = 'none';
+            document.querySelector('.name').value = null;
+            document.querySelector('.description').value = null;
+            document.querySelector('.SKU').value = null;
+            document.querySelector('.manufacture-code').value = null;
+            document.querySelector('.price').value = null;
+            document.querySelector('.quantity').value = null;
             openProducts()
           } else {
             document.querySelector('.error').innerHTML = response.message;
