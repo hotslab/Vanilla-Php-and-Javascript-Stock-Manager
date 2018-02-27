@@ -10,9 +10,11 @@
     </button>
   </h2>
   <p class="error"></p>
-  <div class="table-container"><table class="product-table"></table></div>
+  <div class="table-container">
+    <table class="product-table"></table>
+  </div>
   <div class="product-addition">
-    <h3>Add a new product below:</h3>
+    <h3>Add/Update a product below:</h3>
     <input type="text" class="name" name="name" placeholder="Name">
     <input type="text" class="description" name="description" placeholder="Description">
     <input type="text" class="SKU" name="SKU" placeholder="SKU">
@@ -20,8 +22,14 @@
     <input type="text" class="price" name="price" placeholder="Price">
     <input type="number" class="quantity" name="quantity" placeholder="Quantity">
     <br><br>
-    <button class="button" onclick="createProduct()">
+    <button class="button create-product" onclick="createProduct()">
       Submit
+    </button>
+    <button class="button update-product" onclick="deleteProduct()">
+      Delete
+    </button>
+    <button class="button update-product" onclick="updateProduct()">
+      Update
     </button>
   </div>
 </div>
@@ -32,6 +40,29 @@
     document.querySelector(".product-addition").style.display = 'block';
     document.querySelector(".product-open").style.display = 'none';
     document.querySelector(".product-close").style.display = 'block';
+    document.querySelector(".create-product").style.display = 'block';
+    document.querySelector(".update-product").style.display = 'none';
+  }
+  function openUpdateProduct(key, product_id) {
+    document.querySelector(".error").innerHTML = null;
+    document.querySelector(".product-table").style.display = 'none';
+    document.querySelector(".product-addition").style.display = 'block';
+    document.querySelector(".product-open").style.display = 'none';
+    document.querySelector(".product-close").style.display = 'block';
+    document.querySelector(".create-product").style.display = 'none';
+    document.querySelector(".update-product").style.display = 'block';
+    let product = [];
+    const cells = document.querySelector(".product-table").rows.item(key).cells;
+    for (let cell of cells) {
+      product.push(cell.innerHTML);
+    }
+    console.log(product, 'ARRAY')
+    document.querySelector('.name').value = product[1];
+    document.querySelector('.description').value = product[2];
+    document.querySelector('.SKU').value = product[3];
+    document.querySelector('.manufacture-code').value = product[3];
+    document.querySelector('.price').value = product[4];
+    document.querySelector('.quantity').value = product[5];
   }
   function cancelAddProduct() {
     document.querySelector(".error").innerHTML = null;
@@ -39,6 +70,8 @@
     document.querySelector(".product-addition").style.display = 'none';
     document.querySelector(".product-open").style.display = 'block';
     document.querySelector(".product-close").style.display = 'none';
+    document.querySelector(".create-product").style.display = 'none';
+    document.querySelector(".update-product").style.display = 'none';
   }
   function createProduct() {
     document.querySelector(".error").innerHTML = null;
@@ -63,6 +96,8 @@
             document.querySelector(".product-table").style.display = 'block';
             document.querySelector(".product-open").style.display = 'block';
             document.querySelector(".product-close").style.display = 'none';
+            document.querySelector(".create-product").style.display = 'none';
+            document.querySelector(".update-product").style.display = 'none';
             document.querySelector('.name').value = null;
             document.querySelector('.description').value = null;
             document.querySelector('.SKU').value = null;
@@ -99,7 +134,7 @@
       const response = http.response ? JSON.parse(http.response) : null;
       if (response) {
         if (response.result === 'success') {
-          let myHTML = '<tr>'+
+          let myHTML = '<tr class="">'+
           '<th>ID</th>' +
           '<th>Name</th>' +
           '<th>Decription</th>' +
@@ -109,8 +144,9 @@
           '<th>Price</th>' +
           '<th>Quantity</th>' +
           '</tr>';
-          for (let product of response.products) {
-            myHTML += '<tr>'+
+          for (let [key, product] of response.products.entries()) {
+            myHTML += '<tr class="cursor-pointer" ' +
+            'onclick="openUpdateProduct(' + key + ',' + product.id + ')">' +
             '<td>' + product.id + '</td>' +
             '<td>' + product.name + '</td>' +
             '<td>' + product.description + '</td>' +
@@ -136,6 +172,8 @@
       document.querySelector(".product-addition").style.display = 'none';
       document.querySelector(".product-open").style.display = 'block';
       document.querySelector(".product-close").style.display = 'none';
+      document.querySelector(".create-product").style.display = 'none';
+      document.querySelector(".update-product").style.display = 'none';
       openProducts()
     },
     false);
