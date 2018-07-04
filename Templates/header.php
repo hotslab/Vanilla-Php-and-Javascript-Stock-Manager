@@ -119,7 +119,7 @@
         border: none;
         border-radius: 4px;
       }
-      .close-button {
+      .warning-button {
         background: red;
         padding: 10px;
         color: white;

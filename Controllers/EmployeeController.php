@@ -7,7 +7,8 @@ use Config\Database as Database;
 
 class EmployeeController
 {
-    public function getEmployees() {
+    public function getEmployees()
+    {
         $db = Database::connectDB();
         $sql = "select * from php_stock_manager.employee";
         $result = $db->query($sql);

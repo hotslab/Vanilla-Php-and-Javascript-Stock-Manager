@@ -5,7 +5,7 @@
     <button class="button product-open" onclick="openAddProduct()">
       Add Product
     </button>
-    <button class="close-button product-close" onclick="cancelAddProduct()">
+    <button class="warning-button product-close" onclick="cancelAddProduct()">
       Cancel
     </button>
   </h2>
@@ -22,15 +22,17 @@
     <input type="text" class="price" name="price" placeholder="Price">
     <input type="number" class="quantity" name="quantity" placeholder="Quantity">
     <br><br>
-    <button class="button delete-product" onclick="deleteProduct()">
-      Delete
-    </button>
-    <button class="button update-product" onclick="updateProduct()">
-      Update
-    </button>
-    <button class="button create-product" onclick="createProduct()">
-      Submit
-    </button>
+    <p class="two-column">
+      <button class="button warning-button delete-product" onclick="deleteProduct()">
+        Delete
+      </button>
+      <button class="button update-product" onclick="updateProduct()">
+        Update
+      </button>
+      <button class="button create-product" onclick="createProduct()">
+        Submit
+      </button>
+    </p>
   </div>
 </div>
 <script>
@@ -52,19 +54,19 @@
     document.querySelector(".product-close").style.display = 'block';
     document.querySelector(".create-product").style.display = 'none';
     document.querySelector(".update-product").style.display = 'block';
-    document.querySelector(".delete-product").style.display = 'none';
+    document.querySelector(".delete-product").style.display = 'block';
     let product = [];
-    const cells = document.querySelector(".product-table").rows.item(key).cells;
+    // key + 1 helps to ignore the first row containing headers
+    const cells = document.querySelector(".product-table").rows.item(key + 1).cells;
     for (let cell of cells) {
       product.push(cell.innerHTML);
     }
-    console.log(product, 'ARRAY')
     document.querySelector('.name').value = product[1];
     document.querySelector('.description').value = product[2];
     document.querySelector('.SKU').value = product[3];
     document.querySelector('.manufacture-code').value = product[3];
-    document.querySelector('.price').value = product[4];
-    document.querySelector('.quantity').value = product[5];
+    document.querySelector('.price').value = product[6];
+    document.querySelector('.quantity').value = product[7];
   }
   function cancelAddProduct() {
     document.querySelector(".error").innerHTML = null;
@@ -108,7 +110,7 @@
             document.querySelector('.manufacture-code').value = null;
             document.querySelector('.price').value = null;
             document.querySelector('.quantity').value = null;
-            openProducts()
+            openProducts();
           } else {
             document.querySelector('.error').innerHTML = response.message;
           }
@@ -179,7 +181,7 @@
       document.querySelector(".create-product").style.display = 'none';
       document.querySelector(".update-product").style.display = 'none';
       document.querySelector(".delete-product").style.display = 'none';
-      openProducts()
+      openProducts();
     },
     false);
 </script>
